@@ -61,9 +61,10 @@ Une étape = un commit, validé avant d'être créé (une phase à la fois, cf. 
 6. Vérification manuelle dans un navigateur des scénarios clés de la spec (aucune
    automatisation possible sans framework DOM, hors périmètre vu la taille du projet).
 
-La publication finale sous forme d'artefact Claude Code (regroupement des fichiers en
-un artefact auto-contenu) est une étape distincte, après validation humaine du code,
-et n'est pas couverte par ce plan d'implémentation.
+La publication finale sous forme d'artefact Claude Code multi-fichiers (`simulation.js`,
+`app.js`, `styles.css`, `index.html` publiés tels quels, sans fusion préalable) est une
+étape distincte, après validation humaine du code, et n'est pas couverte par ce plan
+d'implémentation.
 
 ## Tests prévus
 
@@ -75,15 +76,25 @@ et n'est pas couverte par ce plan d'implémentation.
   l'absence de backend/build imposée par la spec.
 - Pas de suite e2e : hors périmètre pour un artefact de cette taille.
 
-## Point d'attention (non bloquant)
+## Organisation multi-fichiers et publication (tranché)
 
 La spec parle d'un « JavaScript vanilla inline » en une seule page. Séparer
-`simulation.js`/`app.js`/`styles.css` pendant le développement est un choix
-d'implémentation (permet de tester la logique avec Node sans backend ni build) qui ne
-change rien au comportement livré : au moment de la publication de l'artefact, les
-fichiers seront soit inlinés dans une unique page HTML, soit publiés en artefact
-multi-fichiers (le tool Artifact le permet nativement). Ce choix sera fait à l'étape de
-publication, pas à cette phase.
+`simulation.js`/`app.js`/`styles.css` pendant le développement permet de tester la
+logique avec Node sans backend ni build (voir Tests prévus). Décision : cette
+séparation est conservée jusqu'à la livraison — l'artefact est publié tel quel en
+artefact multi-fichiers via le support natif du tool Artifact, **sans** étape de
+recombinaison manuelle en un unique fichier HTML.
+
+Raison du choix : une recombinaison manuelle à la publication est un geste non testé,
+fait après coup — elle pourrait faire diverger le code livré du code testé (oubli d'un
+correctif, erreur de copier-coller, mauvais ordre de scripts). Publier les fichiers
+tels quels élimine ce risque sans rien changer à la stratégie de tests.
+
+Conséquence assumée : l'artefact final n'est pas un unique fichier `.html` portable hors
+de l'environnement Claude Artifact ; le partager ailleurs suppose de transmettre les 4
+fichiers ensemble. Cohérent avec l'usage décrit dans l'intention (l'équipe teste une
+séquence via l'artefact avant envoi au rover) ; aucun besoin de fichier `.html` isolé
+n'a été identifié.
 
 ## Vérification
 
