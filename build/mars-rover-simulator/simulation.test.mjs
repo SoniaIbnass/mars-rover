@@ -50,12 +50,33 @@ test('EX-05 — tourner à gauche pivote l\'orientation sans changer la position
   assert.equal(rotateLeft('N'), 'W');
 });
 
+test('EX-06 — un obstacle interne à la carte bloque le rover et interrompt la séquence', () => {
+  // Scénario repris de spec.md : rover en (0,0) N, obstacle en (0,1).
+  const map = [
+    ['🟩', '🟩'],
+    ['🌳', '🟩'],
+  ];
+  const initial = createState(0, 0, 'N');
+  const result = runSequence(initial, map, ['avancer', 'tourner_droite', 'avancer']);
+  assert.deepEqual(result, { x: 0, y: 0, orientation: 'N', stoppedEarly: true });
+});
+
 test('EX-07 — affiche la position et l\'orientation finales après exécution complète', () => {
   const initial = createState(0, 0, 'N');
   const result = runSequence(initial, FREE_2X2, ['avancer', 'tourner_droite', 'avancer']);
   assert.equal(result.x, 1);
   assert.equal(result.y, 1);
   assert.equal(result.orientation, 'E');
+});
+
+test('EX-08 — signale l\'arrêt anticipé de la séquence dû à un obstacle', () => {
+  const map = [
+    ['🟩', '🟩'],
+    ['🌳', '🟩'],
+  ];
+  const initial = createState(0, 0, 'N');
+  const result = runSequence(initial, map, ['avancer', 'tourner_droite', 'avancer']);
+  assert.equal(result.stoppedEarly, true);
 });
 
 test('cas limite — sortie de la carte par le bord nord traitée comme un obstacle', () => {
