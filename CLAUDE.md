@@ -46,3 +46,9 @@ Code (web) auto-contenu — une seule page HTML, JavaScript vanilla inline, pas 
 de backend, carte rendue en grille CSS (`display: grid`). Aucune persistance, un
 utilisateur à la fois. La phase Build (découpage des travaux, code) n'a pas encore
 démarré ; ne pas anticiper cette phase depuis les skills `intent`/`spec`.
+
+## Erreurs récurrentes
+
+Lorsqu’une même erreur se répète deux fois, propose une instruction courte et précise pour l’éviter. Appuie-toi sur les erreurs observées et fais valider cette instruction avant de l’ajouter à CLAUDE.md.
+
+Si une instruction devient obsolète, propose sa correction ou son retrait et attends la validation avant de modifier le fichier.
