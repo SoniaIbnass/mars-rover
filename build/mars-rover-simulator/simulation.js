@@ -50,7 +50,7 @@
   // EX-06 : une case est bloquante si elle est hors limites ou occupée par un obstacle.
   function isBlocked(map, x, y) {
     if (!isWithinBounds(map, x, y)) return true;
-    return isObstacleCell(map, x, y);
+    return false;
   }
 
   function targetPosition(state) {
