@@ -99,6 +99,7 @@ Scénario
 - **Repère de coordonnées** (proposition à valider) : x croît vers l'est, y croît vers le nord (convention mathématique standard). Ce choix n'est pas fixé par l'intention ; il conditionne le sens des déplacements associés à chaque orientation (N : y+1, S : y-1, E : x+1, W : x-1) et devra être confirmé ou ajusté en phase Build si une autre convention est préférée.
 - **Cycle des orientations** (accepté, découle directement d'EX-04/EX-05) : rotation à droite N→E→S→W→N ; rotation à gauche N→W→S→E→N.
 - **Boucle d'exécution** (accepté, découle d'EX-06/EX-07/EX-08) : les commandes sont traitées dans l'ordre. Une commande de rotation s'applique toujours. Une commande « avancer » est évaluée avant d'être appliquée : si la case cible est libre et dans les limites, le rover s'y déplace ; sinon le rover reste immobile et le traitement de la séquence s'arrête, avec le signalement prévu par EX-08.
+- **Stack technique** (accepté, décision Product Owner du 2026-09-22) : le simulateur est réalisé sous forme d'artefact Claude Code (web) auto-contenu — une seule page HTML, sans étape de build ni backend. Logique en JavaScript vanilla inline (la logique de simulation, EX-01 à EX-08, est une simple machine à états ; aucun framework n'est nécessaire). Rendu de la carte en grille CSS (`display: grid`), une case par cellule, le rover représenté par une icône orientée selon EX-04/EX-05. Aucune persistance ni état partagé entre utilisateurs : chaque test de séquence est éphémère, cohérent avec l'usage décrit dans l'intention (l'équipe teste une séquence avant envoi au rover, un utilisateur à la fois).
 
 ## Réserves
 
@@ -127,4 +128,4 @@ Note : le chemin fourni ne correspond à aucun fichier existant ; le fichier `in
 
 ### Révisions
 
-Aucune révision à ce stade.
+- 2026-09-22 : demande « je veux une stack technique compatible avec les artefacts claude code (web) ». Ajout du choix de stack technique à la section Conception proposée (décision Product Owner). Skill utilisée : .claude/skills/spec/SKILL.md, commit 8dc579fe8f5a87d199fb3755b0e8c5434f0bdefa.
