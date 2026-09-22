@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Simulateur Mars Rover</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Simulateur de trajectoire Mars Rover</h1>
+
+    <form id="simulation-form">
+      <fieldset>
+        <legend>Point de départ</legend>
+        <label>x <input type="number" id="start-x" value="0" step="1" /></label>
+        <label>y <input type="number" id="start-y" value="0" step="1" /></label>
+        <label>
+          Orientation
+          <select id="start-orientation">
+            <option value="N">N</option>
+            <option value="E">E</option>
+            <option value="S">S</option>
+            <option value="W">W</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Carte (une ligne = une rangée ; la première ligne est au nord)</legend>
+        <textarea id="map-input" rows="5" cols="20">
+🟩🟩🟩🟩🟩
+🟩🌳🟩🟩🟩
+🟩🟩🟩🪨🟩
+🟩🟩🟩🟩🟩
+🟩🟩🟩🟩🟩</textarea
+        >
+        <p class="hint">Libre : 🟩 🟫 — Obstacle : 🌳 🪨</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Séquence de commandes</legend>
+        <input type="text" id="commands-input" value="AAAA" />
+        <p class="hint">A = avancer, D = tourner à droite, G = tourner à gauche</p>
+      </fieldset>
+
+      <button type="submit">Exécuter la séquence</button>
+    </form>
+
+    <section id="result" aria-live="polite"></section>
+
+    <div id="grid"></div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
