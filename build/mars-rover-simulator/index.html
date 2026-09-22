@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simulateur Mars Rover</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main>
+  <h1>Simulateur de trajectoire Mars Rover</h1>
+
+  <form id="rover-form">
+    <fieldset>
+      <legend>Carte</legend>
+      <p class="hint">Une ligne par rangée, symboles séparés par des espaces. 🟩/🟫 = libre, 🌳/🪨 = obstacle. La première ligne saisie représente le nord.</p>
+      <textarea id="map-input" rows="3" spellcheck="false">🟩 🟩 🟩
+🌳 🟩 🟩
+🟩 🟩 🟩</textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Point de départ</legend>
+      <label>x <input type="number" id="start-x" value="0" min="0" /></label>
+      <label>y <input type="number" id="start-y" value="0" min="0" /></label>
+      <label>orientation
+        <select id="start-orientation">
+          <option value="N" selected>N</option>
+          <option value="E">E</option>
+          <option value="S">S</option>
+          <option value="W">W</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Séquence de commandes</legend>
+      <p class="hint">Mots séparés par des virgules ou des espaces : avancer, droite, gauche.</p>
+      <input type="text" id="sequence-input" value="avancer, droite, avancer" />
+    </fieldset>
+
+    <button type="submit">Exécuter</button>
+  </form>
+
+  <section aria-label="Carte et position du rover">
+    <div id="grid"></div>
+  </section>
+
+  <p id="result" role="status"></p>
+</main>
+
+<script src="simulation.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
