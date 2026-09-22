@@ -21,8 +21,8 @@ de commits séparés, un par étape, avec validation avant chaque commit.
 
 ## Fichiers à créer
 
-Sous un nouveau dossier `build/mars-rover-simulator/` (miroir de la convention
-`intent/<slug>/`) :
+Sous un nouveau dossier `src/mars-rover-simulator/` (`build/` est exclu par
+`.gitignore`, gabarit Python générique — non lié à ce projet) :
 
 - **`simulation.js`** — logique pure de simulation (aucune manipulation du DOM) :
   état du rover (position, orientation), rotation droite/gauche (EX-04, EX-05),
@@ -98,7 +98,7 @@ n'a été identifié.
 
 ## Vérification
 
-- `node --test build/mars-rover-simulator/simulation.test.mjs` doit passer entièrement
+- `node --test src/mars-rover-simulator/simulation.test.mjs` doit passer entièrement
   après l'étape 3.
 - Ouverture de `index.html` dans un navigateur pour rejouer manuellement les scénarios
   EX-01, EX-03 à EX-08 après l'étape 5.
