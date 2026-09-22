@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Simulateur Mars Rover (JS, phase Build) : build/ ci-dessus vise les artefacts de
+# distribution Python, pas ce dossier — on le garde suivi par git.
+!/build/
+!/build/mars-rover-simulator/
+!/build/mars-rover-simulator/**
